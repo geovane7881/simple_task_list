@@ -19,10 +19,17 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `hour_start` time DEFAULT NULL,
   `hour_finish` time DEFAULT NULL,
   `duration` int(2) DEFAULT NULL,
+  `finish` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
--- Data exporting was unselected.
+-- Dumping data for table tarefas.tasks: ~1 rows (approximately)
+/*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
+INSERT INTO `tasks` (`id`, `desc`, `hour_add`, `hour_start`, `hour_finish`, `duration`, `finish`) VALUES
+	(15, 'estudar programaÃ§Ã£o', '2017-12-24 21:03:15', '18:30:00', '22:00:00', NULL, 1),
+	(16, 'lavar a louÃ§a', '2017-12-24 21:03:38', '17:00:00', '18:00:00', NULL, 0);
+/*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

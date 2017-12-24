@@ -74,11 +74,26 @@ if(isset($_POST['task-desc']) && !empty($_POST['task-desc'])) {
                         if($sql->rowCount() > 0) {
                             foreach($sql->fetchAll() as $task):
                             ?>
-                                <div class="alert alert-warning task">
-                                <a  href="removeTask.php?id=<?php echo $task['id'];?>" class="close">&times;</a>
-                                    <span class="task-name"><?php echo $task['desc'];?></span>
-                                    <span class="task-hour"><?php echo date('H:i', strtotime($task['hour_start'])).'-'.date('H:i', strtotime($task['hour_finish']));?></span>
+                                <?php if($task['finish'] == '0'): ?>
+                                <div class="wrapper">
+                                    <a class="check" href="checkTask.php?id=<?php echo $task['id'];?>"><input type="checkbox" name="check"/></a>
+                                    <div class="alert alert-warning task">
+                                        <a  href="removeTask.php?id=<?php echo $task['id'];?>" class="close close_unfinished">&times;</a>
+                                        <span class="task-name"><?php echo $task['desc'];?></span>
+                                        <span class="task-hour"><?php echo date('H:i', strtotime($task['hour_start'])).'-'.date('H:i', strtotime($task['hour_finish']));?></span>
+                                    </div>
                                 </div>
+                                <?php else: ?>
+                                <div class="wrapper">
+                                    <a class="check" href="checkTask.php?id=<?php echo $task['id'];?>&u=true"><input type="checkbox" name="check" checked/></a>
+                                    <div class="alert alert-success task">
+                                        <a  href="removeTask.php?id=<?php echo $task['id'];?>" class="close">&times;</a>
+                                        <span class="task-name"><?php echo $task['desc'];?></span>
+                                        <span class="task-hour"><?php echo date('H:i', strtotime($task['hour_start'])).'-'.date('H:i', strtotime($task['hour_finish']));?></span>
+                                    </div>
+                                    <div class="strike"></div>
+                                </div>
+                                <?php endif;?>
                         <?php
                             endforeach;
                         }
